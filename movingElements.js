@@ -2,8 +2,7 @@
 function getElementToMove(positionX, positionY, elementId, timeOfInterval, pixelsPerIntervalTime) {
     var getElement = elementId;
     var positionXToAchive = parseInt(positionX);
-    var positionYToAchive = parseInt(positionY);
-    positionY.toFixed(0);
+    var positionYToAchive = parseInt(positionY);   
     var intervalTimeFromParam = timeOfInterval;
     var pixelsPerInteval = pixelsPerIntervalTime;
     var elementToMoveList = $('#' + getElement);
@@ -12,16 +11,14 @@ function getElementToMove(positionX, positionY, elementId, timeOfInterval, pixel
         //positionX = positionX + posX;
         //positionY = positionY + posY;
         let posX = elementToMove.offsetLeft;
-        let posY = elementToMove.offsetTop;
+        let posY = elementToMove.offsetTop ;
         // let posX = 0;
         // let posY = 0;
         var interval = setInterval(frame, intervalTimeFromParam);
         function frame() {
 
 
-            if (posX == positionXToAchive && posY == positionYToAchive) {
-                elementToMove.style.left = elementToMove.offsetLeft - (elementToMove.clientWidth / 2) + 'px';
-                elementToMove.style.top = elementToMove.offsetTop - (elementToMove.clientHeight / 2) + 'px';
+            if (posX == positionXToAchive && posY == positionYToAchive) {                
                 clearInterval(interval);
             }
             else {
@@ -58,10 +55,11 @@ function getActualXPositionOfElement(elementId) {
 
     if (getElement != null) {
         var positionElement = getElement.offsetLeft;
-        var elementWidth = getElement.clientWidth;
-        var retVal = positionElement + (elementWidth / 2);//środekElementu od lewej       
+        var margin = positionElement + 20;
+        // var elementWidth = getElement.clientWidth;
+        // var retVal = positionElement + (elementWidth / 2);//środekElementu od lewej       
         //var elementHeight = getElement.clientHeight;
-        return retVal;
+        return margin;
     }
     else {
         console.log.console.error("Error during moving element, propably wrong id name");
@@ -73,10 +71,11 @@ function getActualYPositionOfElement(elementId) {
     var getElement = document.getElementById(elementId);
     if (getElement != null) {
         var positionElement = getElement.offsetTop;
+        var margin = positionElement + 20;
         //var elementWidth = getElement.clientWidth;
-        var elementHeight = getElement.clientHeight;
-        var retVal = positionElement + (elementHeight / 2);
-        return retVal;
+        // var elementHeight = getElement.clientHeight;
+        // var retVal = positionElement + (elementHeight / 2);
+        return positionElement;
     }
     else {
         console.log.console.error("Error during moving element, propably wrong id name");
