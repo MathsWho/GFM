@@ -24,7 +24,7 @@ function getElementToMove(positionX, positionY, elementId, timeOfInterval, pixel
                     posY = posY + pixelsPerInteval;
                     elementToMove.style.top = posY + 'px';
                 }
-                if(positionX != 0 && posX != positionX && positionX < posX){
+                if (positionX != 0 && posX != positionX && positionX < posX) {
                     posX = posX - pixelsPerInteval;
                     elementToMove.style.left = posX + 'px';
                 }
@@ -36,7 +36,32 @@ function getElementToMove(positionX, positionY, elementId, timeOfInterval, pixel
         }
     }
     else {
-        alert("Error during moving element, propably wrong id name")
+        console.log.console.error("Error during moving element, propably wrong id name");
+    }
+
+}
+
+function getActualXPositionOfElement(elementId){
+
+    var getElement = document.getElementById(elementId);
+    if(getElement != null){
+        var positionElement = getElement.offsetLeft;
+        return positionElement;
+    }
+    else{
+        console.log.console.error("Error during moving element, propably wrong id name");
+    }
+
+}
+function getActualYPositionOfElement(elementId){
+
+    var getElement = document.getElementById(elementId);
+    if(getElement != null){
+        var positionElement = getElement.offsetTop;
+        return positionElement;
+    }
+    else{
+        console.log.console.error("Error during moving element, propably wrong id name");
     }
 
 }

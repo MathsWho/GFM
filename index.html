@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <meta charset="utf-8">
 </head>
@@ -11,9 +10,31 @@
 </script>
 
 <body>
-    <p><button onclick="getElementToMove(150,-200,'rawMaterial',1,1)">Start moving</button></p>
-    <div id="rawMaterial" class="rawMaterial"></div>
+    <div class="btn-group">
+            <button onclick="getElementToMove(150,0,'rawMaterial',1,0.1)">Start moving</button>
+            <button onclick="getElementToMove(getActualXPositionOfElement('entryMaterialArea') -30 ,
+            getActualYPositionOfElement('entryMaterialArea') -50,'rawMaterial',1,1)">EntryMaterial</button>
+            <button onclick="getElementToMove(getActualXPositionOfElement('weightMaterial'),0,'rawMaterial',1,1)">WeighedMaterial</button>
+            <button>ForgingStart</button>
+            <button>ForgingEnd</button>
+            <button>MaterialDirectlyToShear</button>
+            <button>MaterialToShearViaAccumulationGrid</button>
+            <button>ShearEvent</button>
+            <button>CoolingBedRemove</button>
+    </div>  
 
+    <span id="entryMill">
+        <img id="entryMaterialArea" class="entryMaterialArea" src="image/entryMaterialArea.bmp">
+    </span>
+    <span>
+        <img id="ball1" class="ballStyle1" src="image/balForRotation.bmp">
+        <img id="ball2" class="ballStyle2" src="image/balForRotation.bmp">
+        <img id="ball3" class="ballStyle3" src="image/balForRotation.bmp">
+    </span>
+    <span>
+        <img id="weightMaterial" class="weightStyle" src="image/weightMaterial.bmp">
+    </span>
+    <span id="rawMaterial" class="rawMaterial"></span>
 
 </body>
 
