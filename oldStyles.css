@@ -1,0 +1,44 @@
+.rawMaterial {
+  width: 100px;
+  height: 40px;
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  background-color: red;
+  /*animation-name: example;
+    animation-duration: 10s; */
+}
+/* .materialAtEntry{
+  width: 200px;
+  height: 50px;
+  background-color: gainsboro;
+} */
+.entryMaterialArea{
+  position: fixed;  
+  left: 20px;
+  top: 350px;
+}
+.ballStyle1{
+  position: fixed;
+  top: 384px;
+  left: 185px;
+  
+}
+.ballStyle2{
+  position: fixed;
+  top: 384px;
+  left: 220px;
+  
+}
+.ballStyle3{
+  position: fixed;
+  top: 384px;
+  left: 256px;
+  
+}
+.weightStyle{
+  position: fixed;
+  top: 350px;
+  left: 300px;
+  
+}
