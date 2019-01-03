@@ -18,7 +18,7 @@
         <button onclick="onEntryEffect()">EntryMaterial</button>
         <button onclick="weighedMaterial()">WeighedMaterial</button>
         <button onclick="onForgingStart()">ForgingStart</button>
-        <button onclick="">ForgingEnd</button>
+        <button onclick="onForgingEnd()">ForgingEnd</button>
         <button onclick="">MaterialDirectlyToShear</button>
         <button onclick="">MaterialToShearViaAccumulationGrid</button>
         <button onclick="">ShearEvent</button>
@@ -41,23 +41,19 @@
             <img class="ArrowFromForgingToAccum" src="imagesGFM/arrowFromForgingMachineToAccum.png">
             <img class="ForgingDirectionArrow" src="imagesGFM/arrowForWorkingMachine.png">
             <img class="RollerWayForgingMachine" src="imagesGFM/ForgiingLine.png">
-            <img class="ForgingMachineBlock" src="imagesGFM/ForgiingMachine.png">
+            <img id="forgingMachine" class="ForgingMachineBlock" src="imagesGFM/ForgiingMachine.png" style="left:350px; top: 50px;">
             <img class="ForklifterWithArrow" src="imagesGFM/arrowFromWeightToForgiing.png">
             <img class="WeighingSystem" src="imagesGFM/weight.png">
         </div>
-
     </div>
-
-
-
-
-
-
 </body>
 
 </html>
 
 <script>
+
+    var killInterval;
+
     function onEntryEffect() {
         var element = $(".WeighingSystem");
         if (element.length > 0) {
@@ -78,7 +74,7 @@
                 },
                 error: function (error) {
                     console.log("Default value");
-                    var defaultWeight = 2000;                    
+                    var defaultWeight = 2000;
                     var $label = $("<label>").attr('class', "weightLabel");
                     // $label.css({ "left": element.left + "px", "top": element.top + 100 + "px" })
                     $label.text("Weighed material: " + defaultWeight + 'kg');
@@ -87,10 +83,27 @@
             });
         }
     }
+
     function onForgingStart() {
-        var element = $(".WeighingSystem");
-        if (element.length > 0) {
-            element.css({ "transform": "none", "box-shadow": "none" })
+        var weightElement = $(".WeighingSystem");
+        if (weightElement.length > 0) {
+            weightElement.css({ "transform": "none", "box-shadow": "none" })
+        }
+        var forkLifterElement = $('.ForklifterWithArrow')
+        if (forkLifterElement.length > 0) {
+            forkLifterElement.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" })
+            var interval = setInterval(frame, 4000);
+            function frame() {
+                forkLifterElement.css({ "transform": "none", "box-shadow": "none" })
+                clearInterval(interval);
+                //getElementToMove(270, 0, 'forgingMachine', 500, 1);
+                //getElementToMove(350, 0, 'forgingMachine', 500, 2);               
+            }
+            killInterval = getElementToMove(270, 0, 'forgingMachine', 500, 1);
         }
     }
+    function onForgingEnd() {
+        clearInterval(killInterval);
+    }
+
 </script>

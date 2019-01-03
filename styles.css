@@ -7,7 +7,7 @@
 .ForklifterWithArrow{
     position: relative;
     left:346px;
-    top: 0px;
+    top: -20px;
 }
 .RollerWayForgingMachine{
     position: relative;
@@ -17,8 +17,8 @@
 
 .ForgingMachineBlock{
     position: relative;
-    left:350px; /*początek to 270 */
-    top: 50px;
+    /* left:350px; /*początek to 270 
+    top: 50px; */
 }
 .ForgingDirectionArrow{
     position: relative;
