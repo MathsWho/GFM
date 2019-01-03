@@ -1,7 +1,7 @@
 .WeighingSystem{    
     position: relative;
     left:355px;
-    top:0px;
+    top:0px;   
 }
 
 .ForklifterWithArrow{
@@ -91,4 +91,9 @@
     height: 500px;
     width: 100%;
     margin-top: 300px;
+}
+.weightLabel{
+    position: absolute;   
+    top: 160px;
+    left:890px;
 }

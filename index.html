@@ -15,9 +15,9 @@
 
 <body>
     <div class="btn-group">
-        <button onclick="">EntryMaterial</button>
-        <button onclick="">WeighedMaterial</button>
-        <button onclick="">ForgingStart</button>
+        <button onclick="onEntryEffect()">EntryMaterial</button>
+        <button onclick="weighedMaterial()">WeighedMaterial</button>
+        <button onclick="onForgingStart()">ForgingStart</button>
         <button onclick="">ForgingEnd</button>
         <button onclick="">MaterialDirectlyToShear</button>
         <button onclick="">MaterialToShearViaAccumulationGrid</button>
@@ -25,30 +25,30 @@
         <button onclick="">CoolingBedRemove</button>
     </div>
 
-<div class="container">
+    <div class="container">
         <div class="row">
-                <img class="Crane" src="imagesGFM/weighingCrane.png">
-                <!-- <img class="MarkingMachine" src="imagesGFM/markingMachine.png"> -->
-                <img class="CoolingBed" src="imagesGFM/CoolingBed.png">                
-                <img class="AccumulationGrid" src="imagesGFM/AccumGrid.png">
-                <img class="DownArrowAccum" src="imagesGFM/arrowDown.png">
-                <img class="DownArrowCoolingBed" src="imagesGFM/arrowDown.png">
-                <img class="RollerWayToAccumulationGrid" src="imagesGFM/ForgiingLine.png">
-                <img class="LeftArrowDirect" src="imagesGFM/arrowLeft.png">
-                <img class="LeftArrowIndirect" src="imagesGFM/arrowLeft.png">
-                <img class="LongRollerWay" src="imagesGFM/mainRollerWay.png">
-                <img class="Shear" src="imagesGFM/shear.png">
-                <img class="ArrowFromForgingToAccum" src="imagesGFM/arrowFromForgingMachineToAccum.png">
-                <img class="ForgingDirectionArrow" src="imagesGFM/arrowForWorkingMachine.png">
-                <img class="RollerWayForgingMachine" src="imagesGFM/ForgiingLine.png">
-                <img class="ForgingMachineBlock" src="imagesGFM/ForgiingMachine.png">
-                <img class="ForklifterWithArrow" src="imagesGFM/arrowFromWeightToForgiing.png">
-                <img class="WeighingSystem" src="imagesGFM/weight.png">
+            <img class="Crane" src="imagesGFM/weighingCrane.png">
+            <!-- <img class="MarkingMachine" src="imagesGFM/markingMachine.png"> -->
+            <img class="CoolingBed" src="imagesGFM/CoolingBed.png">
+            <img class="AccumulationGrid" src="imagesGFM/AccumGrid.png">
+            <img class="DownArrowAccum" src="imagesGFM/arrowDown.png">
+            <img class="DownArrowCoolingBed" src="imagesGFM/arrowDown.png">
+            <img class="RollerWayToAccumulationGrid" src="imagesGFM/ForgiingLine.png">
+            <img class="LeftArrowDirect" src="imagesGFM/arrowLeft.png">
+            <img class="LeftArrowIndirect" src="imagesGFM/arrowLeft.png">
+            <img class="LongRollerWay" src="imagesGFM/mainRollerWay.png">
+            <img class="Shear" src="imagesGFM/shear.png">
+            <img class="ArrowFromForgingToAccum" src="imagesGFM/arrowFromForgingMachineToAccum.png">
+            <img class="ForgingDirectionArrow" src="imagesGFM/arrowForWorkingMachine.png">
+            <img class="RollerWayForgingMachine" src="imagesGFM/ForgiingLine.png">
+            <img class="ForgingMachineBlock" src="imagesGFM/ForgiingMachine.png">
+            <img class="ForklifterWithArrow" src="imagesGFM/arrowFromWeightToForgiing.png">
+            <img class="WeighingSystem" src="imagesGFM/weight.png">
         </div>
 
-</div>
+    </div>
 
-    
+
 
 
 
@@ -58,6 +58,39 @@
 </html>
 
 <script>
-
-
+    function onEntryEffect() {
+        var element = $(".WeighingSystem");
+        if (element.length > 0) {
+            element.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" })
+        }
+    }
+    function weighedMaterial() {
+        var element = $(".WeighingSystem");
+        // '@Url.Action("DeletingAuxKksDataFromDB", "WinCC")'
+        var url = '/controller/method';
+        if (element.length > 0) {
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function (data) {
+                    console.log("DataIsCorrect");
+                },
+                error: function (error) {
+                    console.log("Default value");
+                    var defaultWeight = 2000;                    
+                    var $label = $("<label>").attr('class', "weightLabel");
+                    // $label.css({ "left": element.left + "px", "top": element.top + 100 + "px" })
+                    $label.text("Weighed material: " + defaultWeight + 'kg');
+                    $('.row').prepend($label);
+                }
+            });
+        }
+    }
+    function onForgingStart() {
+        var element = $(".WeighingSystem");
+        if (element.length > 0) {
+            element.css({ "transform": "none", "box-shadow": "none" })
+        }
+    }
 </script>
