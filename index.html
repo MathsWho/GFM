@@ -19,10 +19,10 @@
         <button onclick="weighedMaterial()">WeighedMaterial</button>
         <button onclick="onForgingStart()">ForgingStart</button>
         <button onclick="onForgingEnd()">ForgingEnd</button>
-        <button onclick="">MaterialDirectlyToShear</button>
-        <button onclick="">MaterialToShearViaAccumulationGrid</button>
-        <button onclick="">ShearEvent</button>
-        <button onclick="">CoolingBedRemove</button>
+        <button onclick="onMaterialDirectlyToShear()">MaterialDirectlyToShear</button>
+        <button onclick="onMaterialIndirectly()">MaterialToShearViaAccumulationGrid</button>
+        <button onclick="onShearEvent()">ShearEvent</button>
+        <button onclick="onCoolingBedEvent()">CoolingBedRemove</button>
     </div>
 
     <div class="container">
@@ -96,14 +96,93 @@
             function frame() {
                 forkLifterElement.css({ "transform": "none", "box-shadow": "none" })
                 clearInterval(interval);
+                var forgingMachine = $(".ForgingMachineBlock");
+                forgingMachine.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" })
+                var rollerWayForForgingMachine = $('.RollerWayForgingMachine');
+                rollerWayForForgingMachine.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" })
+
+                var directionOfForging = $('.ForgingDirectionArrow');
+                directionOfForging.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" });
                 //getElementToMove(270, 0, 'forgingMachine', 500, 1);
-                //getElementToMove(350, 0, 'forgingMachine', 500, 2);               
+                //getElementToMove(350, 0, 'forgingMachine', 500, 2); 
+                killInterval = getElementToMove(270, 50, 'forgingMachine', 200, 1);
             }
-            killInterval = getElementToMove(270, 0, 'forgingMachine', 500, 1);
+
         }
     }
     function onForgingEnd() {
         clearInterval(killInterval);
-    }
 
+        var forgingMachine = $(".ForgingMachineBlock");
+        forgingMachine.css({ "transform": "none", "box-shadow": "none" })
+        var rollerWayForForgingMachine = $('.RollerWayForgingMachine');
+        rollerWayForForgingMachine.css({ "transform": "none", "box-shadow": "none" })
+
+        var directionOfForging = $('.ForgingDirectionArrow');
+        directionOfForging.css({ "transform": "none", "box-shadow": "none" });
+
+        var forgingMachine = document.getElementById('forgingMachine');
+        forgingMachine.style.left = 350 + 'px';
+    }
+    function onMaterialDirectlyToShear() {
+        var arowwDirectlyToShear = $('.LeftArrowDirect');
+        if (arowwDirectlyToShear.length > 0) {
+            arowwDirectlyToShear.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" });
+
+        }
+    }
+    function onMaterialIndirectly() {
+        var arrowToRolllerWay = $('.ArrowFromForgingToAccum');
+        if (arrowToRolllerWay.length != 0) {
+            arrowToRolllerWay.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" });
+            setTimeout(resetArrowForgingToAccum, 3000);
+        }
+        function resetArrowForgingToAccum() {
+            var element = $('.ArrowFromForgingToAccum');
+            element.css({ "transform": "none", "box-shadow": "none" });
+            var leftArrowInRollerWay = $('.LeftArrowIndirect');
+            if (leftArrowInRollerWay.length != 0) {
+                leftArrowInRollerWay.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" });
+                setTimeout(resetArrowLeftToAccum, 3000);
+            }
+        }
+        function resetArrowLeftToAccum() {
+            var element = $('.LeftArrowIndirect');
+            element.css({ "transform": "none", "box-shadow": "none" });
+            var accumArea = $('.AccumulationGrid');
+            if (accumArea.length != 0) {
+                accumArea.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" });
+            }
+        }
+    }
+    function onShearEvent() {
+        var elementDirectToShear = $('.LeftArrowDirect');
+        var elementIndirectToShear = $('.AccumulationGrid');
+        if (elementDirectToShear[0].style.transform != "") {
+            //var arowwDirectlyToShear = $('.LeftArrowDirect');
+            if (elementDirectToShear.length > 0) {
+                elementDirectToShear.css({ "transform": "none", "box-shadow": "none" });
+            }
+            var runShear = $('.Shear');
+            if(runShear.length != 0){
+                runShear.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" });
+            }
+
+        }
+        else if (elementIndirectToShear[0].style.transform != "") {
+            if (elementIndirectToShear.length > 0) {
+                elementIndirectToShear.css({ "transform": "none", "box-shadow": "none" });
+            }
+            var runShear = $('.Shear');
+            if(runShear.length != 0){
+                runShear.css({ "transform": "translateY(4px)", "box-shadow": "0 5px #666" });
+            }
+        }
+        else {
+            console.log("none");
+        }
+    }
+    function onCoolingBedEvent() {
+
+    }
 </script>

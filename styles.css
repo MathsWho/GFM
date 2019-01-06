@@ -1,7 +1,9 @@
 .WeighingSystem{    
     position: relative;
     left:355px;
-    top:0px;   
+    top:0px; 
+    /* padding:5px; */
+    /* border: solid 3px white;   */
 }
 
 .ForklifterWithArrow{

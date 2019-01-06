@@ -19,7 +19,15 @@ function getElementToMove(positionX, positionY, elementId, timeOfInterval, pixel
 
 
             if (posX == positionXToAchive && posY == positionYToAchive) {
-                clearInterval(interval);
+                //clearInterval(interval);
+                 //getElementToMove(350, 0, 'forgingMachine', 500, 2); 
+                // positionXToAchive = 350;//only for GFM
+                 if(positionXToAchive == 270){
+                    positionXToAchive = 350;
+                 }
+                 else{
+                    positionXToAchive = 270;
+                 }
             }
             else {
                 if (positionXToAchive != 0 && positionXToAchive > posX) {
